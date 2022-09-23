@@ -1,3 +1,5 @@
+PACKAGE = NINE.TWOTWO
+
 > shIn jsp 화면 < defult
 > 회원가입page로 감
 > shJoin submit 누르면 데이터 전송
