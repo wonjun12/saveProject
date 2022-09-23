@@ -1,0 +1,38 @@
+TABLE USER
+	id : SYSTEM_ADMIN
+	pw : absolute0922
+	
+TABLE NAME
+	- slave
+		 1) sNo - NUMBER(100) [NN] [PK] [SEQ]
+		 2) sName - VARCHAR2(30) [NN] 
+		 3) sEmail - VARCHAR2(50) [NN] [UK]
+		 4) sPwd - VARCHAR2(100) [NN]
+	 - board
+	 	 1) bNo - NUMBER(100) [NN] [PK] [SEQ]
+	 	 2) sNo (외래키) - NUMBER(100) [FK]
+		 3) bTitle - VARCHAR2(50) [NN]
+		 4) bContents - VARCHAR2(500) [NN]
+		 5) bCreateAt - DATE [default sysdate]
+		 6) bViews - NUMBER(100) [default 0]
+		 
+		 
+TABLE Test User
+	- slave
+		1) sNo
+			- 시퀀스
+		2) sName
+		 	- 남기형
+		 	- 황원준
+			- 안병규
+		3) sEmail
+			- nam@naver.com
+			- hwang@naver.com
+			- an@naver.com
+		4) sPwd
+			- 1q2w3e4r
+			- 1234567890
+			- qwer1234!@#$
+	
+	 
+	
