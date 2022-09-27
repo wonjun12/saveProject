@@ -21,4 +21,4 @@ PACKAGE = NINE.TWOTWO
 수정>> boardEdit.java >> boardEdit.jsp >> 수정버튼 submit doPost >>
 >> redirect boardView.java>> boardView.jsp
 
-
+%오늘%
