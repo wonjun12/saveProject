@@ -2,8 +2,10 @@
 
 #kingDiv {
 	width: 100vh;
+	height: 50vh;
 	margin-left: auto;
 	margin-right: auto;
+	position: relative;
 }
 #writeDiv {
 	background-color: #FFFFFF;
@@ -88,6 +90,7 @@ table{
 	font-weight: bold;
 }
 #commentWId {
+	display:inline-block;
 	border: 1px solid #b7b7b7;
 	font-size: 15px;
 	margin-top: 20px;
@@ -96,11 +99,14 @@ table{
 	width: 92%;
 }
 #tlqkfId {
+	display:inline-block;
+	position:absolute;
+	margin-top: 20px;
+	width: 200px;
+}
+#gktlId {
+	display:inline-block;
 	background-color: transparent;
 	color: #b7b7b7;
 	border: 0px;
-	display:inline-block;
-	position:absolute;
-	top:460px;
-	right: 530px;
 }

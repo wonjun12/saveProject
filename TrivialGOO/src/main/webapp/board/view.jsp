@@ -10,9 +10,7 @@
 <link rel="stylesheet" href="./css/write.css">
 
 <script type="text/javascript" src="./js/view.js">
-
-
-
+	
 </script>
 
 </head>
@@ -54,31 +52,38 @@
 				</tr>
 			</table>
 			<!-- 게시글 *댓글 기능*   댓글이 있다면 표시 없다면 표시 X -->
-			<div id="comtitleId">			
+			<div id="comtitleId">
 				<p id="ptagId">▢댓글▢</p>
-			</div>	
+			</div>
 			<div id="commentId">
 				<%
-				if(request.getAttribute("commtView") != null){
-				ResultSet comRs = (ResultSet) request.getAttribute("commtView");
-					while(comRs.next()) {
+				if (request.getAttribute("commtView") != null) {
+					ResultSet comRs = (ResultSet) request.getAttribute("commtView");
+					while (comRs.next()) {
 				%>
 				<table>
-				<tr id="firstTrId">
-					<td><img alt="프로필사진" src="https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_77.png?type=c77_77" width="22" height="20">
-					<%=comRs.getString("SNAME")%>
-					</td>
-				</tr>
-				<tr>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=comRs.getString("COMMENTS")%></td>
-				</tr>
+					<tr id="firstTrId">
+						<td><img alt="프로필사진"
+							src="https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_77.png?type=c77_77"
+							width="22" height="20"> <%=comRs.getString("SNAME")%></td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=comRs.getString("COMMENTS")%></td>
+					</tr>
 				</table>
-				<% } }
+				<%
+				}
+				}
 				%>
 			</div>
 			<form action="./commt" method="POST" id="formId2">
-				<input type="text" name="inputCommt" id="commentWId" placeholder="댓글을 남겨 보세요"> <input type="button"
-					value="작성" onclick="vwFnc()" id="tlqkfId">
+
+				<input type="text" name="inputCommt" id="commentWId"
+					placeholder="댓글을 남겨 보세요">
+				<div id="tlqkfId">
+					<input type="button" value="작성" onclick="vwFnc()" id="gktlId">
+				</div>
+
 			</form>
 		</div>
 
@@ -86,19 +91,23 @@
 			<div id="buttonId">
 				<!-- 다른 사용자의 게시글을 수정하거나 삭제할 수 없게 만든 기능 (관리자는 가능) -->
 				<%
-				int SNO = (int)session.getAttribute("SNO");
+				int SNO = (int) session.getAttribute("SNO");
 				if (rs.getInt("SNO") == SNO) {
 				%>
 				<a href="./edit?bno=<%=rs.getInt("bno")%>"><input type="button"
 					value="수정"></a> &nbsp;
-				<%} %>
-				<% if((int) session.getAttribute("SNO") == 1 || rs.getInt("SNO") == (int) session.getAttribute("SNO")){ %>
+				<%
+				}
+				%>
+				<%
+				if ((int) session.getAttribute("SNO") == 1 || rs.getInt("SNO") == (int) session.getAttribute("SNO")) {
+				%>
 				<input type="button" value="삭제" id="viewinputId"
 					onclick="deleteFnc()">&nbsp;&nbsp;
 
 				<%
-					 }
-					%>
+				}
+				%>
 
 				<a href="./list"> <input type="button" value="목록">
 				</a>

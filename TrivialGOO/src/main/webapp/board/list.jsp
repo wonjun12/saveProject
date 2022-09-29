@@ -49,7 +49,7 @@
 							<strong>공지</strong>
 						</td>
 						<td>
-							<strong><a class="notiseCl" href="./view?no=<%=rs.getInt("bno")%>"><%=rs.getString("btitle")%></a></strong>
+							<strong><a class="notiseCl" href="./view?no=<%=rs.getInt("bno")%>">&nbsp;<%=rs.getString("btitle")%></a></strong>
 						</td>
 						<td class="centerCl"><%=rs.getString("sname")%></td>
 						<td class="centerCl"><%=rs.getDate("BCREATEAT")%></td>
@@ -69,7 +69,7 @@
 					<tr>
 						<td class="noCl"><%=rs.getInt("bno")%></td>
 						<td>
-							<a class="aTagCl" href="./view?no=<%=rs.getInt("bno")%>"><%=rs.getString("btitle")%></a>
+							<a class="aTagCl" href="./view?no=<%=rs.getInt("bno")%>">&nbsp;<%=rs.getString("btitle")%></a>
 						</td>
 						<td class="centerCl"><%=rs.getString("sname")%></td>
 						<td class="centerCl"><%=rs.getDate("BCREATEAT")%></td>
