@@ -57,9 +57,6 @@ table{
 }
 #inputWId {
 	font-weight: bold;
-	background-image: url("../images/pencil.png");
-	background-repeat: no-repeat;
-	background-position: 0px 0px;
 }
 #inputLId {
 	font-weight: bold;
@@ -67,4 +64,43 @@ table{
 }
 #viewinputId {
 	width: 50px;
+}
+#comtitleId{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 60px;
+	width: 92%;
+	font-size: 15px;
+	font-weight: bold;
+}
+#commentId{
+	border: 1px solid silver;
+	font-size: 15px;
+	margin-top: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 92%;
+}
+#ptagId {
+	margin-bottom: 0px;
+}
+#firstTrId {
+	font-weight: bold;
+}
+#commentWId {
+	border: 1px solid #b7b7b7;
+	font-size: 15px;
+	margin-top: 20px;
+	margin-left: 32px;
+	margin-right: auto;
+	width: 92%;
+}
+#tlqkfId {
+	background-color: transparent;
+	color: #b7b7b7;
+	border: 0px;
+	display:inline-block;
+	position:absolute;
+	top:460px;
+	right: 530px;
 }

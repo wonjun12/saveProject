@@ -49,45 +49,61 @@
 					<td class="titleCl" id="titleId"><%=rs.getString("btitle")%></td>
 				</tr>
 				<tr class="borderCl">
+					<!-- 글 내용 (줄바꿈 표시 \r\n\으로 변경해서 웹에서 <br>로 안보이게 설정)-->
 					<td colspan="2"><%=rs.getString("bcontents").replace("<br>", "\r\n")%></td>
 				</tr>
-
 			</table>
-			<form action="./view" method="POST" id="fomrId">
-			<div id="buttonId">
+			<!-- 게시글 *댓글 기능*   댓글이 있다면 표시 없다면 표시 X -->
+			<div id="comtitleId">			
+				<p id="ptagId">▢댓글▢</p>
+			</div>	
+			<div id="commentId">
 				<%
-				int SNO = (int)session.getAttribute("SNO");
-				if (rs.getInt("SNO") == SNO) {
-				%>
-					<a href="./edit?bno=<%=rs.getInt("bno")%>"><input
-						type="button" value="수정"></a> &nbsp; <%} %>
-					<% if((int) session.getAttribute("SNO") == 1 || rs.getInt("SNO") == (int) session.getAttribute("SNO")){ %>
-						<input type="button" value="삭제" id="viewinputId" onclick="deleteFnc()">&nbsp;&nbsp;
-					
-					<%
-					 }
-					%>
-	
-					<a href="./list"> <input type="button" value="목록">
-					</a>
-				</div>
-			</form>
-			<%
 				if(request.getAttribute("commtView") != null){
 				ResultSet comRs = (ResultSet) request.getAttribute("commtView");
 					while(comRs.next()) {
 				%>
-					작성자 : <%=comRs.getString("SNAME")%>
-					내용 : <%=comRs.getString("COMMENTS")%>
-					<br>
+				<table>
+				<tr id="firstTrId">
+					<td><img alt="프로필사진" src="https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_77.png?type=c77_77" width="22" height="20">
+					<%=comRs.getString("SNAME")%>
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=comRs.getString("COMMENTS")%></td>
+				</tr>
+				</table>
 				<% } }
 				%>
-			<form action="./commt" method="POST">
-				<input type="text" name="inputCommt">
-				<input type="submit" value="작성">
-			</form>	
+			</div>
+			<form action="./commt" method="POST" id="formId2">
+				<input type="text" name="inputCommt" id="commentWId" placeholder="댓글을 남겨 보세요"> <input type="button"
+					value="작성" onclick="vwFnc()" id="tlqkfId">
+			</form>
 		</div>
 
+		<form action="./view" method="POST" id="fomrId">
+			<div id="buttonId">
+				<!-- 다른 사용자의 게시글을 수정하거나 삭제할 수 없게 만든 기능 (관리자는 가능) -->
+				<%
+				int SNO = (int)session.getAttribute("SNO");
+				if (rs.getInt("SNO") == SNO) {
+				%>
+				<a href="./edit?bno=<%=rs.getInt("bno")%>"><input type="button"
+					value="수정"></a> &nbsp;
+				<%} %>
+				<% if((int) session.getAttribute("SNO") == 1 || rs.getInt("SNO") == (int) session.getAttribute("SNO")){ %>
+				<input type="button" value="삭제" id="viewinputId"
+					onclick="deleteFnc()">&nbsp;&nbsp;
+
+				<%
+					 }
+					%>
+
+				<a href="./list"> <input type="button" value="목록">
+				</a>
+			</div>
+		</form>
 		<%
 		}
 		%>

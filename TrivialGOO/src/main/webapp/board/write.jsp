@@ -25,6 +25,7 @@
 		<td class="centerCl">이름</td>
 		<td>
 			<input id="nameId" class="nameCl" type="text" value="<%=request.getAttribute("name")%>" disabled>
+			<!-- 관리자만 공지를 작성할 수 있다 (선택은 일반 게시글)-->
 			<%if((int)request.getAttribute("SNO") == 1) {%>
 			<select name="selectNotice">
 				<option value=0> 선택 </option>

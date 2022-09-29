@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
-
+// 보안,java파일을 실행하기 위해 기존 경로를 프로젝트명/URL명으로 변경(매핑)
 @WebServlet("/board/write")
 public class boardWrite extends HttpServlet{
 	private int SNO;
@@ -33,7 +33,7 @@ public class boardWrite extends HttpServlet{
 		String pwd = "absolute0922";
 		String sql = "";
 		
-		//작성자 이름을 조회하는 sql문
+		//sql문
 		sql = "SELECT SNAME, SNO, SEMAIL"
 				+ " FROM SLAVE"
 				+ " WHERE sNo = ?";
@@ -51,7 +51,7 @@ public class boardWrite extends HttpServlet{
 			
 			pstmt = conn.prepareStatement(sql);
 			
-//			pstmt.setInt(1, Integer.parseInt(req.getParameter("inputTest")));
+//			pstmt.setInt(1, Integer.parseInt(req.getParameter("inputTest"))); 세션값 대신 사용 (합치기전 사용)
 			pstmt.setInt(1, (int)session.getAttribute("SNO"));
 			
 			rs = pstmt.executeQuery();
@@ -62,7 +62,7 @@ public class boardWrite extends HttpServlet{
 				req.setAttribute("name",rs.getString("SNAME"));
 				req.setAttribute("email", rs.getString("SEMAIL"));
 			}
-			
+			// 웹에서 전달한 정보를 write.jsp에 전달
 			RequestDispatcher rd =
 					req.getRequestDispatcher("./write.jsp");
 			rd.forward(req, res);
@@ -77,7 +77,7 @@ public class boardWrite extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		//한글로 인코딩 처리
 		req.setCharacterEncoding("UTF-8");
 		res.setCharacterEncoding("UTF-8");
 		Connection conn = null;
@@ -93,6 +93,7 @@ public class boardWrite extends HttpServlet{
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(sqlUrl, id, pwd);
+			//sql insert문 (게시글 작성)
 			sql = "INSERT INTO BOARD"
 					+ " VALUE(SNO, BNO, BTITLE, BCONTENTS, BNOTICE)"
 					+ " VALUES(?, BOARD_BNO_SEQ.NEXTVAL, ?, ?, ?)";
@@ -103,8 +104,10 @@ public class boardWrite extends HttpServlet{
 			pstmt.setString(3, req.getParameter("inputContents").replace("\r\n", "<br>"));
 			pstmt.setString(4, selectNotice);
 			
+			// sql 값 반환 
 			pstmt.executeUpdate();
 			
+			//작업을 수행한 후 list페이지로 이동
 			res.sendRedirect("./list");
 			
 			

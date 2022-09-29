@@ -44,13 +44,14 @@ public class boardList extends HttpServlet{
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(sqlUrl, id, pwd);
-			
+			//sql 사용자,게시글 조회 (공지조회)
 			sql = "select b.bno, b.btitle, b.bcontents, b.bcreateat, b.bviews, s.sname"
 					+ " from board b join slave s on b.sno = s.sno"
 					+ " where b.bnotice = 1";
 			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
+			//공지사항
 			req.setAttribute("notice", rs);
 			
 //			sql = "select rownum, b.bno, b.btitle, b.bcreateat, b.bviews, s.sname"
@@ -62,6 +63,7 @@ public class boardList extends HttpServlet{
 //					+ " from board b join slave s on b.sno = s.sno"
 //					+ " order by b.bno ASC) boardList";
 			
+			// rownum을 사용해 원하는 만큼의 행을 가져옴
 			sql = "select boardList2.*"
 					+ " from(select rownum nums, boardList1.*"
 					+ " from (select b.bno, b.btitle, b.bcreateat, b.bviews, s.sname"
@@ -71,7 +73,6 @@ public class boardList extends HttpServlet{
 			
 			int listNum = 0;
 			
-			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, 0);
 			pstmt.setInt(2, 5);
@@ -80,6 +81,7 @@ public class boardList extends HttpServlet{
 			
 			req.setAttribute("RS", rs);
 			
+			// 현재 게시글의 총 개수를 알려준다(size)
 			sql = "select max(rownum) maxNum"
 					+ " from board b join slave s on b.sno = s.sno";
 			
@@ -92,7 +94,7 @@ public class boardList extends HttpServlet{
 			
 			req.setAttribute("searchInput", "");
 			req.setAttribute("schck", 0);
-			
+			// 웹에서 전달한 정보를 list.jsp에 전달
 			RequestDispatcher rd =
 					req.getRequestDispatcher("./list.jsp");
 					

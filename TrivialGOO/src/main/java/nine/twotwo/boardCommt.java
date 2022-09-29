@@ -32,12 +32,14 @@ public class boardCommt extends HttpServlet{
 		String pwd = "absolute0922";
 		
 		String sql = "";
+		//sql insert문 (댓글)
 		sql += "INSERT INTO comments"
 				+ " (CNO, BNO, SNO, COMMENTS)"
 				+ " VALUES(comments_CNo_SEQ.NEXTVAL, ? , ? , ? )";
 		
 		HttpSession session = req.getSession();
 		
+		// 로그인 상태가 아니라면 로그인페이지로 이동
 		if(session.getAttribute("SNO") == null) {
 			res.sendRedirect("../SU/shInId.jsp");
 		}
@@ -50,8 +52,6 @@ public class boardCommt extends HttpServlet{
 			String commtStr = req.getParameter("inputCommt");
 			int boardBno = BNO;
 			int slaveSno = (int) session.getAttribute("SNO");
-
-			
 
 			pstmt = conn.prepareStatement(sql);
 			

@@ -27,7 +27,7 @@ public class boardEdit extends HttpServlet{
 		String sqlUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String id = "SYSTEM_ADMIN";
 		String pwd = "absolute0922";
-		//임시보내기
+		//임시보내기 //sql 사용자,게시판 테이블 조회 (수정 할 떄 게시글 정보)
 		String sql = "select s.sno, b.bno, b.btitle, b.bcontents, s.sname, s.semail"
 				+ " from board b join slave s on b.sno = s.sno"
 				+ " where b.bno = ?";
@@ -45,12 +45,14 @@ public class boardEdit extends HttpServlet{
 			
 			req.setAttribute("edit", rs);
 			
+			// 웹에서 전달한 정보를 edit.jsp에 전달
 			RequestDispatcher rd = 
 					req.getRequestDispatcher("./edit.jsp");
 			
 			rd.forward(req, res);
 			
 		} catch (Exception e) {
+			//예외처리
 			e.printStackTrace();
 		}
 		
@@ -71,7 +73,7 @@ public class boardEdit extends HttpServlet{
 		String title = req.getParameter("inputTitle");
 		String contents = req.getParameter("inputContents");
 		String notice = req.getParameter("selectNotice");
-		
+		// sql update문 (게시글 수정)
 		String sql = "update board"
 				+ " set btitle = ?, bcontents = ?, bnotice = ?"
 				+ " where bno = ?";
@@ -88,7 +90,7 @@ public class boardEdit extends HttpServlet{
 			
 			
 			pstmt.executeUpdate();
-			
+			//작업을 수행한 후 list페이지로 이동
 			res.sendRedirect("./list");
 			
 			

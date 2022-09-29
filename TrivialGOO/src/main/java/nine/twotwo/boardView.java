@@ -43,7 +43,7 @@ private int BNO;
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(sqlUrl, id, pwd);
-			
+			// sql 수정문
 			sql = "update board"
 					+ " set bviews = bviews + 1"
 					+ " where bno = ?";
@@ -53,7 +53,7 @@ private int BNO;
 			pstmt.setInt(1, BNO);
 
 			pstmt.executeUpdate();
-
+			// sql 사용자,게시판 테이블 조회 (사용자 게시글 조회)
 			sql = "select b.bno, b.btitle, s.semail, b.bcontents, b.bcreateat, b.bviews, s.sname, s.sno"
 					+ " from board b join slave s on b.sno = s.sno"
 					+ " where b.bno = ?";
@@ -66,6 +66,7 @@ private int BNO;
 
 			req.setAttribute("detailview", rs);
 			
+			// sql 사용자,댓글 테이블 조회 (댓글조회 및 정렬)
 			sql = "select *"
 					+ " from (select rownum rownums, commBo.bno, commBo.comments, s.sname ,s.sno"
 					+ " from (select c.bno, c.comments, c.sno"
@@ -81,6 +82,7 @@ private int BNO;
 			
 			req.setAttribute("commtView", rs);
 			
+			// 웹에서 전달한 정보를 view.jsp에 전달
 			RequestDispatcher rd = 
 					req.getRequestDispatcher("./view.jsp");
 			
@@ -115,7 +117,7 @@ private int BNO;
 			pstmt.setInt(1, BNO);
 			
 			pstmt.executeUpdate();
-			
+			//sql delete문 (게시글 삭제)
 			sql = "DELETE board"
 					+ " WHERE bno = ?";
 			
@@ -124,7 +126,7 @@ private int BNO;
 			pstmt.setInt(1, BNO);
 			
 			pstmt.executeUpdate();
-			
+			//작업을 수행한 후 list페이지로 이동
 			res.sendRedirect("./list");
 			
 		} catch (Exception e) {

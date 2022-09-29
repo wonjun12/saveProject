@@ -37,6 +37,7 @@
 					</tr>
 				</thead>
 				<tbody>
+					<!-- 공지만 보여준다 -->
 					<%
 					ResultSet rs = null;
 					/* if((ResultSet)request.getAttribute("notice") != null) { */
@@ -57,9 +58,10 @@
 					<%
 					}
 					%>
+					<!-- 일반 게시글만 보여준다  -->
 					<%
 					rs = (ResultSet) request.getAttribute("RS");
-
+					// 게시글 총 개수
 					int maxList = (int) request.getAttribute("maxList");
 
 					while (rs.next()) {
@@ -78,7 +80,7 @@
 					%>
 				</tbody>
 			</table>
-
+			<!-- 셀렉트박스 옵션 value 값대로 찾기 기능-->
 			<div>
 				<form action="./search" method="get" class="serachCl" id="formId">
 					<select name="schck" id="selectId">
@@ -94,9 +96,9 @@
 					<input type="button" value="글쓰기">
 				</a>
 			</div>
-
+			
 			<div id="pageId">
-				<!-- 페이지 -->
+				<!-- 페이징 게시글 5개마다 다음페이지 생성 -->
 				<%
 				String searchInput = (String) request.getAttribute("searchInput");
 				int schck = (int) request.getAttribute("schck");
