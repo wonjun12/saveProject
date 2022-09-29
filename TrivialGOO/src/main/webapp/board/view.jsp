@@ -72,6 +72,20 @@
 					</a>
 				</div>
 			</form>
+			<%
+				if(request.getAttribute("commtView") != null){
+				ResultSet comRs = (ResultSet) request.getAttribute("commtView");
+					while(comRs.next()) {
+				%>
+					작성자 : <%=comRs.getString("SNAME")%>
+					내용 : <%=comRs.getString("COMMENTS")%>
+					<br>
+				<% } }
+				%>
+			<form action="./commt" method="POST">
+				<input type="text" name="inputCommt">
+				<input type="submit" value="작성">
+			</form>	
 		</div>
 
 		<%

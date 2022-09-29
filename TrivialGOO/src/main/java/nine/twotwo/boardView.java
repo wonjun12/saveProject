@@ -22,7 +22,7 @@ private int BNO;
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+	
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -35,7 +35,9 @@ private int BNO;
 		if(session.getAttribute("SNO") == null) {
 			res.sendRedirect("../SU/shInId.jsp");
 		}
+		
 		BNO = Integer.parseInt(req.getParameter("no"));
+		boardCommt.BNO = BNO;
 		
 		try {
 			
@@ -61,8 +63,23 @@ private int BNO;
 			pstmt.setInt(1, BNO);
 			
 			rs = pstmt.executeQuery();
-			
+
 			req.setAttribute("detailview", rs);
+			
+			sql = "select *"
+					+ " from (select rownum rownums, commBo.bno, commBo.comments, s.sname ,s.sno"
+					+ " from (select c.bno, c.comments, c.sno"
+					+ " from comments c join board b on b.bno = c.bno)commBo join slave s on commBo.sno = s.sno) commBo2"
+					+ " where commBo2.bno = ?"
+					+ " order by commBo2.rownums ASC";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, BNO);
+			
+			rs = pstmt.executeQuery();
+			
+			req.setAttribute("commtView", rs);
 			
 			RequestDispatcher rd = 
 					req.getRequestDispatcher("./view.jsp");
@@ -84,13 +101,24 @@ private int BNO;
 		String sqlUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String id = "SYSTEM_ADMIN";
 		String pwd = "absolute0922";
-		String sql = "DELETE board"
-				+ " WHERE bno = ?";
+		String sql = "";
 		
 		try {
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(sqlUrl, id, pwd);
+			sql = "DELETE comments"
+					+ " where bno = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, BNO);
+			
+			pstmt.executeUpdate();
+			
+			sql = "DELETE board"
+					+ " WHERE bno = ?";
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, BNO);
