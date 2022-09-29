@@ -61,7 +61,7 @@
 				%>
 					<a href="./edit?bno=<%=rs.getInt("bno")%>"><input
 						type="button" value="수정"></a> &nbsp; <%} %>
-					<% if((int) session.getAttribute("SNO") == 1){ %>
+					<% if((int) session.getAttribute("SNO") == 1 || rs.getInt("SNO") == (int) session.getAttribute("SNO")){ %>
 						<input type="button" value="삭제" id="viewinputId" onclick="deleteFnc()">&nbsp;&nbsp;
 					
 					<%
