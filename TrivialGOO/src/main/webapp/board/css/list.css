@@ -1,0 +1,113 @@
+@charset "UTF-8";
+.mainDiv {
+	width: 100vh;
+	height: 50vh;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+.theadCl {
+	background-color: #a29671;
+}
+
+.writeCl {
+	float: right;
+	margin-top: 3px;
+	margin-right: 10px;
+}
+
+.serachCl {
+	float: left;
+	margin-top: 3px;
+}
+
+#titleId {
+	width: 720px;
+}
+
+.centerCl {
+	width: 15%;
+	text-align: center;
+}
+
+.noCl {
+	width: 6%;
+	text-align: center;
+}
+
+.viewCl {
+	width: 70px;
+	text-align: center;
+}
+
+#h2Id {
+	margin-bottom: 0px;
+}
+
+#hrId {
+	margin-top: 0px;
+	margin-bottom: 30px;
+}
+
+#pageId {
+	margin-top: 40px;
+	text-align: center;
+}
+
+#scId {
+	height: 2vh;
+}
+#hearId:link{
+	text-decoration: none;
+	color: black;
+}
+#hearId:visited {
+	text-decoration: none;
+	color: black;
+}
+#hearId:hover{
+	text-decoration: none;
+	color: black;
+}
+
+.aTagCl:link {
+	text-decoration: none;
+	color: black;
+}
+.aTagCl:visited {
+	color: gray;
+}
+.aTagCl:hover {
+	text-decoration: underline;
+	color: pink;
+}
+
+.notiseCl:link{
+	text-decoration: none;
+	color: #539DBC;
+	font-size: 18px;
+}
+.notiseCl:visited {
+	color: #539DBC;
+	font-size: 18px;
+}
+.notiseCl:hover {
+	text-decoration: none;
+	color: #539DBC;
+	font-size: 18px;
+}
+
+#selectId {
+	width: 10vh;
+	height: 2.5vh;
+	text-align: center;
+}
+
+#logoutId{
+	display:inline-block;
+	position:absolute;
+	
+	right:0px;
+	top:60px;
+}

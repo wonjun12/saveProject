@@ -1,0 +1,77 @@
+@charset "UTF-8";
+div{
+		display: block;
+	}
+	#center{
+		border-width:1px;
+		border-color: gray;
+		border-style: solid;
+		border-radius:8px;
+		width:450px;
+		margin:0 auto;
+		padding: 48px 40px 36px;
+	}
+	.logo{
+		display: flex;
+		height: 24px;
+		justify-content: left;
+	}
+	.nomal{
+		text-align: left;
+	}
+	.slogId{
+	    padding-bottom: 0;
+	    padding-top: 16px;
+	    color: #202124;
+	    font-size: 24px;
+	    font-family: "Google Sans","Noto Sans Myanmar UI",arial,sans-serif;
+	    font-weight: 400;
+	    line-height: 1.3333;
+	    margin-bottom: 0;
+	    margin-top: 0;
+	    word-break: break-word;
+	}
+	
+	.inputgo{
+	    border-width: 0 24px;
+	    box-sizing: border-box;
+	    display: inline-block;
+	    font-size: 15px;
+	    padding: 24px 0 0;
+	    vertical-align: top;
+	    white-space: normal;
+	    width: 100%;
+	}
+	.slogIn2 {
+	    padding-bottom: 1px;
+	    padding-top: 7px;
+	    color: #202124;
+	    font-size: 16px;
+	    font-weight: 400;
+	    letter-spacing: 0.1px;
+	    line-height: 1.5;
+	}
+	.sEmail{
+       box-flex: 1;
+	    flex-grow: 1;
+	    flex-shrink: 1;
+	    background-color: transparent;
+	    border: none;
+	    display: block;
+	    font: 400 17px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+	    height: 24px;
+	    line-height: 24px;
+	    margin: 0;
+	    min-width: 0%;
+	    outline: none;
+	    padding: 0;
+	    z-index: 0;
+	}
+	.gridMid .gridMid2{
+		margin:0px;
+		padding-right: 5px;
+		width: 100px;
+	}
+	.warning{
+		color: red;
+	}

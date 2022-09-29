@@ -1,0 +1,9 @@
+@charset "UTF-8";
+.warning{
+		color: red;
+	}
+	.logo{
+		display: flex;
+		height: 24px;
+		justify-content: center;
+	}
