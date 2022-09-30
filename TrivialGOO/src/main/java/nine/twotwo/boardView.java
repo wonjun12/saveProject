@@ -68,7 +68,7 @@ private int BNO;
 			
 			// sql 사용자,댓글 테이블 조회 (댓글조회 및 정렬)
 			sql = "select *"
-					+ " from (select rownum rownums, commBo.bno, commBo.comments, s.sname ,s.sno"
+					+ " from (select rownum rownums, commBo.bno, commBo.comments, commBo.cCreateAt, s.sname ,s.sno"
 					+ " from (select c.bno, c.comments, c.sno"
 					+ " from comments c join board b on b.bno = c.bno)commBo join slave s on commBo.sno = s.sno) commBo2"
 					+ " where commBo2.bno = ?"

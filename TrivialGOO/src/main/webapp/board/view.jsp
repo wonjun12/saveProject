@@ -68,7 +68,8 @@
 							width="22" height="20"> <%=comRs.getString("SNAME")%></td>
 					</tr>
 					<tr>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=comRs.getString("COMMENTS")%></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=comRs.getString("COMMENTS")%></td> <br>
+						<%=comRs.getString("CCREATEAT") %>
 					</tr>
 				</table>
 				<%
