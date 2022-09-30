@@ -68,7 +68,7 @@ public class boardList extends HttpServlet{
 					+ " from(select rownum nums, boardList1.*"
 					+ " from (select b.bno, b.btitle, b.bcreateat, b.bviews, s.sname"
 					+ " from board b join slave s on b.sno = s.sno"
-					+ " order by b.bno ASC) boardList1) boardList2"
+					+ " order by b.bno DESC) boardList1) boardList2"
 					+ " where boardList2.nums > ? AND boardList2.nums <= ?";
 			
 			int listNum = 0;

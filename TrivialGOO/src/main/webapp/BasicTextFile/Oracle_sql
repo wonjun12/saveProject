@@ -57,7 +57,10 @@ CREATE SEQUENCE COMMENTS_CNo_SEQ
 INCREMENT BY 1
     START WITH 1;
     
+commit;    
     
 INSERT INTO SLAVE
 (SNO, SNAME, SEMAIL, SPWD)
 VALUES(SLAVE_SNO_SEQ.NEXTVAL, 'Admin', 'admin@admin.admin', 'admin');
+
+commit; 
